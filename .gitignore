@@ -1,0 +1,9 @@
+/etc/
+/log/
+/ssl/
+
+/html/vendor/
+
+/php-spx/lib/
+
+/*.sublime-workspace
