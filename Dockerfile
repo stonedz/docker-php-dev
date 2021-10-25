@@ -56,7 +56,11 @@ RUN apk add \
     php8-tokenizer \
     php8-xml \
     php8-xmlwriter \
+    php8-xmlreader \
     php8-zip
+
+# configure php-fpm8
+ADD --chown=root:root include/www.conf /etc/php8/php-fpm.d/www.conf
 
 # install xdebug
 RUN apk add \
@@ -68,6 +72,12 @@ ADD --chown=root:root include/xdebug.ini /etc/php8/conf.d/xdebug.ini
 # install composer
 RUN apk add \
     composer
+
+# locales
+ENV MUSL_LOCPATH="/usr/share/i18n/locales/musl"
+RUN apk add \
+    musl-locales \
+    musl-locales-lang
 
 # install apache
 RUN apk add \
