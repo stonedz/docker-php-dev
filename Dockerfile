@@ -130,10 +130,10 @@ RUN sed -i 's|^DocumentRoot|<FilesMatch "\.php$">\n\
 RUN sed -i 's|DirectoryIndex index.html|DirectoryIndex index.php index.html|g' /etc/apache2/httpd.conf
 
 # change apache timeout for easier debugging
-RUN sed -i 's|^Timeout .*$|Timeout 600|g' /etc/apache2/conf.d/default.conf
+RUN sed -i 's|^Timeout .*$|Timeout 12000|g' /etc/apache2/conf.d/default.conf
 
 # change php max execution time for easier debugging
-RUN sed -i 's|^max_execution_time .*$|max_execution_time = 600|g' /etc/php8/php.ini
+RUN sed -i 's|^max_execution_time .*$|max_execution_time = 12000|g' /etc/php8/php.ini
 
 # add http authentication support
 RUN sed -i 's|^DocumentRoot|<VirtualHost _default_:80>\n    SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1\n</VirtualHost>\n\nDocumentRoot|g' /etc/apache2/httpd.conf
